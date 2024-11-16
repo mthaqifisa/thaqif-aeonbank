@@ -14,7 +14,30 @@ docker-compose up -d
 
 
 #### [2] Run the application locally
-Open terminal in the project folder and run the following command:
+1. Create .yml file with the following content (sample name: MySQL.yml):
+```yml
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql_container
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: aeon
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
+```
+2. run the following command in the same path as previous yml:
+```shell
+docker-compose -f MySQL.yml up -d
+```
+3. Open terminal in the project folder and run the following command:
 ```shell
 mvn spring-boot:run
 ```
