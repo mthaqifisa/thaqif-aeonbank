@@ -1,0 +1,856 @@
+{
+	"info": {
+		"_postman_id": "c6ef0a80-4b66-41a4-85d2-fff9a5cd1b8d",
+		"name": "Aeon Bank - Thaqif",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5893466"
+	},
+	"item": [
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "Register book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"isbn\": \"111-1-11-111111-2\",\n  \"title\": \"title 2\",\n  \"author\": \"name 2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local-URL}}/book/register",
+							"host": [
+								"{{local-URL}}"
+							],
+							"path": [
+								"book",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Mismatched title/author",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"isbn\": \"111-1-11-111111-2\",\n  \"title\": \"title 2\",\n  \"author\": \"name 2\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local-URL}}/book/register",
+									"host": [
+										"{{local-URL}}"
+									],
+									"path": [
+										"book",
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"FAILED\",\n    \"errorMessage\": \"Books with the same ISBN must have the same title and author\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"isbn\": \"111-1-11-111111-3\",\n  \"title\": \"title 2\",\n  \"author\": \"name 2\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local-URL}}/book/register",
+									"host": [
+										"{{local-URL}}"
+									],
+									"path": [
+										"book",
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"SUCCESS\",\n    \"errorMessage\": null,\n    \"data\": [\n        {\n            \"id\": 3,\n            \"isbn\": \"111-1-11-111111-1\",\n            \"title\": \"title 1\",\n            \"author\": \"name 1\",\n            \"copyNumber\": 5\n        }\n    ]\n}"
+						},
+						{
+							"name": "General error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"isbn\": \"111-1-11-111111-3\",\n  \"title\": \"title 2\",\n  \"author\": \"name 2\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local-URL}}/book/register",
+									"host": [
+										"{{local-URL}}"
+									],
+									"path": [
+										"book",
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"FAILED\",\n    \"errorMessage\": \"Unable to acquire JDBC Connection [HikariPool-1 - Connection is not available, request timed out after 30001ms (total=0, active=0, idle=0, waiting=0)] [n/a]\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all book",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local-URL}}/book/inquiry",
+							"host": [
+								"{{local-URL}}"
+							],
+							"path": [
+								"book",
+								"inquiry"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local-URL}}/book/inquiry",
+									"host": [
+										"{{local-URL}}"
+									],
+									"path": [
+										"book",
+										"inquiry"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"SUCCESS\",\n    \"errorMessage\": null,\n    \"data\": [\n        {\n            \"id\": 3,\n            \"isbn\": \"111-1-11-111111-1\",\n            \"title\": \"title 1\",\n            \"author\": \"name 1\",\n            \"copyNumber\": 5\n        },\n        {\n            \"id\": 4,\n            \"isbn\": \"111-1-11-111111-2\",\n            \"title\": \"title 2\",\n            \"author\": \"name 2\",\n            \"copyNumber\": 1\n        }\n    ]\n}"
+						},
+						{
+							"name": "General error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local-URL}}/book/inquiry",
+									"host": [
+										"{{local-URL}}"
+									],
+									"path": [
+										"book",
+										"inquiry"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"FAILED\",\n    \"errorMessage\": \"Could not open JPA EntityManager for transaction\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Get book by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local-URL}}/book/retrieve/10",
+							"host": [
+								"{{local-URL}}"
+							],
+							"path": [
+								"book",
+								"retrieve",
+								"10"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local-URL}}/book/retrieve/1",
+									"host": [
+										"{{local-URL}}"
+									],
+									"path": [
+										"book",
+										"retrieve",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"SUCCESS\",\n    \"errorMessage\": null,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"isbn\": \"111-1-11-111111-1\",\n            \"title\": \"title 1\",\n            \"author\": \"name 1\",\n            \"copyNumber\": 1\n        }\n    ]\n}"
+						},
+						{
+							"name": "Book not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local-URL}}/book/retrieve/10",
+									"host": [
+										"{{local-URL}}"
+									],
+									"path": [
+										"book",
+										"retrieve",
+										"10"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"FAILED\",\n    \"errorMessage\": \"Book not found\",\n    \"data\": []\n}"
+						},
+						{
+							"name": "General error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local-URL}}/book/retrieve/10",
+									"host": [
+										"{{local-URL}}"
+									],
+									"path": [
+										"book",
+										"retrieve",
+										"10"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"FAILED\",\n    \"errorMessage\": \"Could not open JPA EntityManager for transaction\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Borrower",
+			"item": [
+				{
+					"name": "Register borrower",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"name3\",\n  \"email\": \"email3@test.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local-URL}}/borrower/register",
+							"host": [
+								"{{local-URL}}"
+							],
+							"path": [
+								"borrower",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"name\",\n  \"email\": \"emai@test.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local-URL}}/borrower/register",
+									"host": [
+										"{{local-URL}}"
+									],
+									"path": [
+										"borrower",
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"SUCCESS\",\n    \"errorMessage\": null,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"name\",\n            \"email\": \"emai@test.com\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all borrower",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local-URL}}/borrower/inquiry",
+							"host": [
+								"{{local-URL}}"
+							],
+							"path": [
+								"borrower",
+								"inquiry"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all borrower",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local-URL}}/borrower/inquiry",
+									"host": [
+										"{{local-URL}}"
+									],
+									"path": [
+										"borrower",
+										"inquiry"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"SUCCESS\",\n    \"errorMessage\": null,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"name\",\n            \"email\": \"emai@test.com\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"name2\",\n            \"email\": \"email2@test.com\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all borrower by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local-URL}}/borrower/retrieve/1",
+							"host": [
+								"{{local-URL}}"
+							],
+							"path": [
+								"borrower",
+								"retrieve",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Borrower not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local-URL}}/borrower/retrieve/1",
+									"host": [
+										"{{local-URL}}"
+									],
+									"path": [
+										"borrower",
+										"retrieve",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"FAILED\",\n    \"errorMessage\": \"Borrower not found\",\n    \"data\": []\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local-URL}}/borrower/retrieve/1",
+									"host": [
+										"{{local-URL}}"
+									],
+									"path": [
+										"borrower",
+										"retrieve",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"SUCCESS\",\n    \"errorMessage\": null,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"name\",\n            \"email\": \"emai@test.com\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "BorrowRecord",
+			"item": [
+				{
+					"name": "Borrow a book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"borrowerId\": 2,\n  \"bookId\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local-URL}}/borrow-record/borrow-book",
+							"host": [
+								"{{local-URL}}"
+							],
+							"path": [
+								"borrow-record",
+								"borrow-book"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Borrower not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"borrowerId\": 0,\n  \"bookId\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local-URL}}/borrow-record/borrow-book",
+									"host": [
+										"{{local-URL}}"
+									],
+									"path": [
+										"borrow-record",
+										"borrow-book"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"FAILED\",\n    \"errorMessage\": \"Borrower not found\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Book not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"borrowerId\": 1,\n  \"bookId\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local-URL}}/borrow-record/borrow-book",
+									"host": [
+										"{{local-URL}}"
+									],
+									"path": [
+										"borrow-record",
+										"borrow-book"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"FAILED\",\n    \"errorMessage\": \"Book not found\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"borrowerId\": 1,\n  \"bookId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local-URL}}/borrow-record/borrow-book",
+									"host": [
+										"{{local-URL}}"
+									],
+									"path": [
+										"borrow-record",
+										"borrow-book"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"SUCCESS\",\n    \"errorMessage\": null,\n    \"data\": [\n        {\n            \"id\": 3,\n            \"borrowDate\": \"2024-11-16\",\n            \"returnDate\": null,\n            \"book\": {\n                \"id\": 3,\n                \"isbn\": \"111-1-11-111111-1\",\n                \"title\": \"title 1\",\n                \"author\": \"name 1\",\n                \"copyNumber\": 5\n            },\n            \"borrower\": {\n                \"id\": 2,\n                \"name\": \"name2\",\n                \"email\": \"email2@test.com\"\n            }\n        }\n    ]\n}"
+						},
+						{
+							"name": "Book already borrowed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"borrowerId\": 1,\n  \"bookId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local-URL}}/borrow-record/borrow-book",
+									"host": [
+										"{{local-URL}}"
+									],
+									"path": [
+										"borrow-record",
+										"borrow-book"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"FAILED\",\n    \"errorMessage\": \"Book is already borrowed\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all borrow record",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local-URL}}/borrow-record/inquiry",
+							"host": [
+								"{{local-URL}}"
+							],
+							"path": [
+								"borrow-record",
+								"inquiry"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local-URL}}/borrow-record/inquiry",
+									"host": [
+										"{{local-URL}}"
+									],
+									"path": [
+										"borrow-record",
+										"inquiry"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"SUCCESS\",\n    \"errorMessage\": null,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"borrowDate\": \"2024-11-16\",\n            \"returnDate\": \"2024-11-16\",\n            \"book\": {\n                \"id\": 3,\n                \"isbn\": \"111-1-11-111111-1\",\n                \"title\": \"title 1\",\n                \"author\": \"name 1\",\n                \"copyNumber\": 5\n            },\n            \"borrower\": {\n                \"id\": 1,\n                \"name\": \"name1\",\n                \"email\": \"email1@test.com\"\n            }\n        },\n        {\n            \"id\": 2,\n            \"borrowDate\": \"2024-11-16\",\n            \"returnDate\": null,\n            \"book\": {\n                \"id\": 4,\n                \"isbn\": \"111-1-11-111111-2\",\n                \"title\": \"title 2\",\n                \"author\": \"name 2\",\n                \"copyNumber\": 1\n            },\n            \"borrower\": {\n                \"id\": 1,\n                \"name\": \"name1\",\n                \"email\": \"email1@test.com\"\n            }\n        },\n        {\n            \"id\": 3,\n            \"borrowDate\": \"2024-11-16\",\n            \"returnDate\": null,\n            \"book\": {\n                \"id\": 3,\n                \"isbn\": \"111-1-11-111111-1\",\n                \"title\": \"title 1\",\n                \"author\": \"name 1\",\n                \"copyNumber\": 5\n            },\n            \"borrower\": {\n                \"id\": 2,\n                \"name\": \"name2\",\n                \"email\": \"email2@test.com\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Return a book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"borrowerId\": 1,\n  \"bookId\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local-URL}}/borrow-record/return-book",
+							"host": [
+								"{{local-URL}}"
+							],
+							"path": [
+								"borrow-record",
+								"return-book"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{local-URL}}/borrow-record/return-book",
+									"host": [
+										"{{local-URL}}"
+									],
+									"path": [
+										"borrow-record",
+										"return-book"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"SUCCESS\",\n    \"errorMessage\": null,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"borrowDate\": \"2024-11-16\",\n            \"returnDate\": \"2024-11-16\",\n            \"book\": {\n                \"id\": 3,\n                \"isbn\": \"111-1-11-111111-1\",\n                \"title\": \"title 1\",\n                \"author\": \"name 1\",\n                \"copyNumber\": 5\n            },\n            \"borrower\": {\n                \"id\": 1,\n                \"name\": \"name1\",\n                \"email\": \"email1@test.com\"\n            }\n        }\n    ]\n}"
+						},
+						{
+							"name": "No active borrow record",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{local-URL}}/borrow-record/return-book",
+									"host": [
+										"{{local-URL}}"
+									],
+									"path": [
+										"borrow-record",
+										"return-book"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"FAILED\",\n    \"errorMessage\": \"No active borrow record found\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
